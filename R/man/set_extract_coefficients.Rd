@@ -12,7 +12,7 @@ set_extract_coefficients(algorithm, family)
 \item{family}{A character vector of length one; the type of regression to run on the data. Choices are one of c("gaussian", "binomial"). Defaults to "gaussian".}
 }
 \value{
-TO BE EDITED.
+A function; the function for extracting coefficients from a model.
 }
 \description{
 Sets the function responsible for extracting coefficients from a model.
@@ -22,6 +22,7 @@ Other setters: \code{\link{set_categorical_variables}},
   \code{\link{set_coefficients_boolean}},
   \code{\link{set_column_names}}, \code{\link{set_cores}},
   \code{\link{set_dependent_variable}},
+  \code{\link{set_extract_variable_importances}},
   \code{\link{set_fit_model}},
   \code{\link{set_independent_variables}},
   \code{\link{set_looper_}}, \code{\link{set_looper}},

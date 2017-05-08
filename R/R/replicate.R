@@ -1,7 +1,7 @@
 #' Replicate coefficients.
 #'
-#' @param fit_model TO BE EDITED.
-#' @param extract_coefficients TO BE EDITED.
+#' @param fit_model A function; the function for fitting a model to the data.
+#' @param extract_coefficients A function; the function for extracting coefficients from a model.
 #' @param preprocess A function; the function for preprocessing the data. Defaults to NULL.
 #' @param X A matrix; the independent variables.
 #' @param y A vector; the dependent variable.
@@ -10,7 +10,7 @@
 #' @param progress_bar A logical vector of length one; specifies whether to display a progress bar during calculations. Defaults to TRUE.
 #' @param n_core An integer vector of length one; specifies the number of cores to use for this analysis. Currenly only works on Mac OSx and Unix/Linux systems. Defaults to 1L.
 #' @param ... The arguments to be passed to the algorithm specified.
-#' @return TO BE EDITED.
+#' @return A data.frame, the replicated penalized regression model coefficients.
 #' @family replicate
 #' @export
 replicate_coefficients <- function(fit_model, extract_coefficients, 
@@ -49,51 +49,67 @@ replicate_coefficients <- function(fit_model, extract_coefficients,
 
 #' Replicate variable importances.
 #'
-#' @param fit_model TO BE EDITED.
+#' @param fit_model A function; the function for fitting a model to the data.
+#' @param extract_variable_importances A function; the function for extracting variable importances from a model.
 #' @param preprocess A function; the function for preprocessing the data. Defaults to NULL.
 #' @param X A matrix; the independent variables.
 #' @param y A vector; the dependent variable.
-#' @param categorical_variables A logical vector; each value TRUE indicates that column in the data.frame is a categorical variable. Defaults to NULL.
-#' @param ... The arguments to be passed to the algorithm specified.
-#' @return TO BE EDITED.
-#' @family replicate
-#' @export
-replicate_variable_importances <- function(fit_model, preprocess, X, y, 
-                                           categorical_variables = NULL, ...) {
-  # Print an informative message
-  print(paste0("Replicating variable importances:"))
-
-  # Preprocess data
-  result <- preprocess(list(X = X), categorical_variables)
-  X <- result[["X"]]
-  
-  # Fit model
-  model <- fit_model(X, y, ...)
-  
-  # Extract variable importances
-  importances <- randomForest::importance(model)
-  variable_importances <- data.frame(variable = rownames(importances),
-                                     mean_decrease_gini = as.numeric(importances), 
-                                     stringsAsFactors = FALSE)
-  
-  variable_importances
-}
-
-#' Replicate predictions.
-#'
-#' @param fit_model TO BE EDITED.
-#' @param predict_model TO BE EDITED.
-#' @param preprocess A function; the function for preprocessing the data. Defaults to NULL.
-#' @param X_train A matrix; the independent variables sampled to a training set.
-#' @param y_train A vector; the dependent variable sampled to a training set.
-#' @param X_test A matrix; the independent variables sampled to a testing set.
-#' @param resample A function; the function for resampling the data. Defaults to NULL.
 #' @param categorical_variables A logical vector; each value TRUE indicates that column in the data.frame is a categorical variable. Defaults to NULL.
 #' @param n_samples An integer vector of length one; specifies the number of times the coefficients and predictions should be replicated. Defaults to 1000L. 
 #' @param progress_bar A logical vector of length one; specifies whether to display a progress bar during calculations. Defaults to TRUE.
 #' @param n_core An integer vector of length one; specifies the number of cores to use for this analysis. Currenly only works on Mac OSx and Unix/Linux systems. Defaults to 1L.
 #' @param ... The arguments to be passed to the algorithm specified.
-#' @return TO BE EDITED.
+#' @return A data.frame, the replicated variable importance scores.
+#' @family replicate
+#' @export
+replicate_variable_importances <- function(fit_model, extract_variable_importances, 
+                                           preprocess, X, y, 
+                                           categorical_variables = NULL, 
+                                           n_samples = 1000, progress_bar = TRUE, 
+                                           n_core = 1, ...) {
+  # Print an informative message
+  if (progress_bar) {
+    parallel_string <- ifelse(n_core > 1, " in parallel:", ":")
+    print(paste0("Replicating variable importances", parallel_string))
+  }
+  
+  # Preprocess data
+  result <- preprocess(list(X = X), categorical_variables)
+  X <- result[["X"]]
+  
+  # Define closure
+  replicate_variable_importance <- function(i) {
+    model <- fit_model(X, y, ...)
+    variable_importance <- extract_variable_importances(model)
+    variable_importance
+  }
+  
+  # Set which looping mechanism to use
+  looper <- set_looper(progress_bar, n_core)
+  
+  # Loop over number of iterations
+  variable_importances <- looper(1:n_samples, replicate_variable_importance)
+  
+  # Combine list of data.frames into one data.frame; 
+  # structure should be a data.frame of n_samples by ncol(X)
+  variable_importances <- do.call(rbind, variable_importances)
+  variable_importances
+}
+
+#' Replicate predictions.
+#'
+#' @param fit_model A function; the function for fitting a model to the data.
+#' @param predict_model A function; the function for generating predictions from a fitted model.
+#' @param preprocess A function; the function for preprocessing the data. Defaults to NULL.
+#' @param X_train A matrix; the independent variables sampled to a training set.
+#' @param y_train A vector; the dependent variable sampled to a training set.
+#' @param X_test A matrix; the independent variables sampled to a testing set.
+#' @param categorical_variables A logical vector; each value TRUE indicates that column in the data.frame is a categorical variable. Defaults to NULL.
+#' @param n_samples An integer vector of length one; specifies the number of times the coefficients and predictions should be replicated. Defaults to 1000L. 
+#' @param progress_bar A logical vector of length one; specifies whether to display a progress bar during calculations. Defaults to TRUE.
+#' @param n_core An integer vector of length one; specifies the number of cores to use for this analysis. Currenly only works on Mac OSx and Unix/Linux systems. Defaults to 1L.
+#' @param ... The arguments to be passed to the algorithm specified.
+#' @return A list of matrixes, the replicated predictions.
 #' @family replicate
 #' @export
 replicate_predictions <- function(fit_model, predict_model, preprocess, 
@@ -149,8 +165,8 @@ replicate_predictions <- function(fit_model, predict_model, preprocess,
 
 #' Replicate metrics.
 #'
-#' @param fit_model TO BE EDITED.
-#' @param predict_model TO BE EDITED.
+#' @param fit_model A function; the function for fitting a model to the data.
+#' @param predict_model A function; the function for generating predictions from a fitted model.
 #' @param resample A function; the function for resampling the data. Defaults to NULL.
 #' @param preprocess A function; the function for preprocessing the data. Defaults to NULL.
 #' @param measure A function; the function for measuring the results. Defaults to NULL.
@@ -164,7 +180,7 @@ replicate_predictions <- function(fit_model, predict_model, preprocess,
 #' @param n_core An integer vector of length one; specifies the number of cores to use for this analysis. Currenly only works on Mac OSx and Unix/Linux systems. Defaults to 1L.
 #' @param foldid A vector with length equal to \code{length(y)} which identifies cases belonging to the same fold.
 #' @param ... The arguments to be passed to the algorithm specified.
-#' @return TO BE EDITED.
+#' @return A list of matrixes, the replicated metrics.
 #' @family replicate
 #' @export
 replicate_metrics <- function(fit_model, predict_model, resample, preprocess, 

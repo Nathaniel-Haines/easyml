@@ -2,26 +2,27 @@
 % Please edit documentation in R/plot.R
 \name{plot_metrics_gaussian_cor_score}
 \alias{plot_metrics_gaussian_cor_score}
-\title{Plot Correlation metrics.}
+\title{Plot correlation coefficient metrics.}
 \usage{
 plot_metrics_gaussian_cor_score(cor_scores)
 }
 \arguments{
-\item{cor_scores}{TO BE EDITED.}
+\item{cor_scores}{A vector, the correlation coefficient metrics to be plotted as a histogram.}
 }
 \value{
-TO BE EDITED.
+A ggplot object. This plot may be rendered by outputting it to the command line or modified using ggplot semantics.
 }
 \description{
-Plot Correlation metrics.
+Plot correlation coefficient metrics.
 }
 \seealso{
 Other plot: \code{\link{plot_coefficients_processed}},
   \code{\link{plot_metrics_binomial_area_under_curve}},
+  \code{\link{plot_metrics_gaussian_icc_score}},
   \code{\link{plot_metrics_gaussian_mean_squared_error}},
   \code{\link{plot_metrics_gaussian_r2_score}},
   \code{\link{plot_predictions_binomial}},
   \code{\link{plot_predictions_gaussian}},
-  \code{\link{plot_variable_importances}}
+  \code{\link{plot_variable_importances_processed}}
 }
 

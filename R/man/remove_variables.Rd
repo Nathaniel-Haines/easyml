@@ -12,7 +12,7 @@ remove_variables(.data = NULL, exclude_variables = NULL)
 \item{exclude_variables}{A character vector; the variables from the data set to exclude. Defaults to NULL.}
 }
 \value{
-TO BE EDITED.
+A data.frame; the data to be analyzed.
 }
 \description{
 Remove variables from a dataset.
@@ -20,6 +20,7 @@ Remove variables from a dataset.
 \seealso{
 Other utils: \code{\link{correlation_test}},
   \code{\link{process_coefficients}},
+  \code{\link{process_variable_importances}},
   \code{\link{reduce_cores}}
 }
 

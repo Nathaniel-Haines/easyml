@@ -12,7 +12,7 @@ set_looper_(progress_bar = FALSE, parallel = FALSE)
 \item{parallel}{A logical vector of length one; specifies whether to run calculations in parallel. Defaults to FALSE.}
 }
 \value{
-TO BE EDITED.
+The looper to use depending on progress bar and whether to run in parallel or not.
 }
 \description{
 This function decides which looper (a functional like lapply) to run. This function does not affect global state.
@@ -23,6 +23,7 @@ Other setters: \code{\link{set_categorical_variables}},
   \code{\link{set_column_names}}, \code{\link{set_cores}},
   \code{\link{set_dependent_variable}},
   \code{\link{set_extract_coefficients}},
+  \code{\link{set_extract_variable_importances}},
   \code{\link{set_fit_model}},
   \code{\link{set_independent_variables}},
   \code{\link{set_looper}}, \code{\link{set_measure}},

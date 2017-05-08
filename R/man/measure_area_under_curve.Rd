@@ -20,6 +20,7 @@ values, calculates the the AUC metric.
 }
 \seealso{
 Other measure: \code{\link{measure_cor_score}},
+  \code{\link{measure_icc_score}},
   \code{\link{measure_mean_squared_error}},
   \code{\link{measure_r2_score}}
 }

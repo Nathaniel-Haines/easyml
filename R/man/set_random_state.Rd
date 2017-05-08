@@ -10,7 +10,7 @@ set_random_state(random_state = NULL)
 \item{random_state}{An integer vector of length one; specifies the seed to be used for the analysis. Defaults to NULL.}
 }
 \value{
-TO BE EDITED.
+NULL.
 }
 \description{
 Sets the random state to a specific seed. Please note this function affects global state.
@@ -21,6 +21,7 @@ Other setters: \code{\link{set_categorical_variables}},
   \code{\link{set_column_names}}, \code{\link{set_cores}},
   \code{\link{set_dependent_variable}},
   \code{\link{set_extract_coefficients}},
+  \code{\link{set_extract_variable_importances}},
   \code{\link{set_fit_model}},
   \code{\link{set_independent_variables}},
   \code{\link{set_looper_}}, \code{\link{set_looper}},

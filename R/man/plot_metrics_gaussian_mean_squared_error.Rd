@@ -7,10 +7,10 @@
 plot_metrics_gaussian_mean_squared_error(mses)
 }
 \arguments{
-\item{mses}{TO BE EDITED.}
+\item{mses}{A vector, the mean squared error metrics to be plotted as a histogram.}
 }
 \value{
-TO BE EDITED.
+A ggplot object. This plot may be rendered by outputting it to the command line or modified using ggplot semantics.
 }
 \description{
 Plot mean squared error metrics.
@@ -19,9 +19,10 @@ Plot mean squared error metrics.
 Other plot: \code{\link{plot_coefficients_processed}},
   \code{\link{plot_metrics_binomial_area_under_curve}},
   \code{\link{plot_metrics_gaussian_cor_score}},
+  \code{\link{plot_metrics_gaussian_icc_score}},
   \code{\link{plot_metrics_gaussian_r2_score}},
   \code{\link{plot_predictions_binomial}},
   \code{\link{plot_predictions_gaussian}},
-  \code{\link{plot_variable_importances}}
+  \code{\link{plot_variable_importances_processed}}
 }
 

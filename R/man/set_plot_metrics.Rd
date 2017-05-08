@@ -10,7 +10,7 @@ set_plot_metrics(measure)
 \item{measure}{A function; the function for measuring the results. Defaults to NULL.}
 }
 \value{
-TO BE EDITED.
+TA function; the function for plotting the metrics generated from the predictions generated from a fitted model.
 }
 \description{
 Sets the function responsible for plotting the metrics generated from the predictions generated from a fitted model.
@@ -21,6 +21,7 @@ Other setters: \code{\link{set_categorical_variables}},
   \code{\link{set_column_names}}, \code{\link{set_cores}},
   \code{\link{set_dependent_variable}},
   \code{\link{set_extract_coefficients}},
+  \code{\link{set_extract_variable_importances}},
   \code{\link{set_fit_model}},
   \code{\link{set_independent_variables}},
   \code{\link{set_looper_}}, \code{\link{set_looper}},

@@ -12,7 +12,7 @@ set_categorical_variables(column_names, categorical_variables = NULL)
 \item{categorical_variables}{A character vector; the variables that are categorical. Defaults to NULL.}
 }
 \value{
-TO BE EDITED.
+NULL, or if \code{categorical_variables} is not NULL, then a logical vector of length \code{length(column_names} where TRUE represents that column is a categorical variable.
 }
 \description{
 Set categorical variables.
@@ -22,6 +22,7 @@ Other setters: \code{\link{set_coefficients_boolean}},
   \code{\link{set_column_names}}, \code{\link{set_cores}},
   \code{\link{set_dependent_variable}},
   \code{\link{set_extract_coefficients}},
+  \code{\link{set_extract_variable_importances}},
   \code{\link{set_fit_model}},
   \code{\link{set_independent_variables}},
   \code{\link{set_looper_}}, \code{\link{set_looper}},

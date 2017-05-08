@@ -8,4 +8,11 @@ test_that("Test reduce_cores.", {
 })
 
 test_that("Test remove_variables.", {
+  expect_equal(remove_variables(mtcars, "mpg"), mtcars[, -1])
+})
+
+test_that("Test correlation_test.", {
+  m <- correlation_test(mtcars)
+  expect_equal(length(m), 3)
+  expect_true(nrow(m$p_value) == ncol(m$p_value))
 })

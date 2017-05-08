@@ -19,7 +19,7 @@ set_column_names(column_names, dependent_variable, preprocess = NULL,
 \item{categorical_variables}{A character vector; the variables that are categorical. Defaults to NULL.}
 }
 \value{
-TO BE EDITED.
+The updated columns, in the correct order for preprocessing.
 }
 \description{
 Set column names.
@@ -30,6 +30,7 @@ Other setters: \code{\link{set_categorical_variables}},
   \code{\link{set_cores}},
   \code{\link{set_dependent_variable}},
   \code{\link{set_extract_coefficients}},
+  \code{\link{set_extract_variable_importances}},
   \code{\link{set_fit_model}},
   \code{\link{set_independent_variables}},
   \code{\link{set_looper_}}, \code{\link{set_looper}},

@@ -12,7 +12,7 @@ set_dependent_variable(.data, dependent_variable)
 \item{dependent_variable}{A character vector of length one; the dependent variable for this analysis.}
 }
 \value{
-TO BE EDITED.
+A vector, the dependent variable of the analysis.
 }
 \description{
 Set dependent variable.
@@ -22,6 +22,7 @@ Other setters: \code{\link{set_categorical_variables}},
   \code{\link{set_coefficients_boolean}},
   \code{\link{set_column_names}}, \code{\link{set_cores}},
   \code{\link{set_extract_coefficients}},
+  \code{\link{set_extract_variable_importances}},
   \code{\link{set_fit_model}},
   \code{\link{set_independent_variables}},
   \code{\link{set_looper_}}, \code{\link{set_looper}},

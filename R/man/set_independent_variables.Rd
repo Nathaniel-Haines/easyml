@@ -2,7 +2,7 @@
 % Please edit documentation in R/setters.R
 \name{set_independent_variables}
 \alias{set_independent_variables}
-\title{Set independent variablex.}
+\title{Set independent variables.}
 \usage{
 set_independent_variables(.data, dependent_variable)
 }
@@ -12,10 +12,10 @@ set_independent_variables(.data, dependent_variable)
 \item{dependent_variable}{A character vector of length one; the dependent variable for this analysis.}
 }
 \value{
-TO BE EDITED.
+A data.frame, the independent variables of the analysis.
 }
 \description{
-Set independent variablex.
+Set independent variables.
 }
 \seealso{
 Other setters: \code{\link{set_categorical_variables}},
@@ -23,6 +23,7 @@ Other setters: \code{\link{set_categorical_variables}},
   \code{\link{set_column_names}}, \code{\link{set_cores}},
   \code{\link{set_dependent_variable}},
   \code{\link{set_extract_coefficients}},
+  \code{\link{set_extract_variable_importances}},
   \code{\link{set_fit_model}}, \code{\link{set_looper_}},
   \code{\link{set_looper}}, \code{\link{set_measure}},
   \code{\link{set_metrics_boolean}},

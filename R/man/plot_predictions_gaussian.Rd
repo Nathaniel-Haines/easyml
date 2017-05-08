@@ -12,7 +12,7 @@ plot_predictions_gaussian(y_true, y_pred)
 \item{y_pred}{Estimated target values.}
 }
 \value{
-TO BE EDITED.
+A ggplot object. This plot may be rendered by outputting it to the command line or modified using ggplot semantics.
 }
 \description{
 Plot gaussian predictions.
@@ -21,9 +21,10 @@ Plot gaussian predictions.
 Other plot: \code{\link{plot_coefficients_processed}},
   \code{\link{plot_metrics_binomial_area_under_curve}},
   \code{\link{plot_metrics_gaussian_cor_score}},
+  \code{\link{plot_metrics_gaussian_icc_score}},
   \code{\link{plot_metrics_gaussian_mean_squared_error}},
   \code{\link{plot_metrics_gaussian_r2_score}},
   \code{\link{plot_predictions_binomial}},
-  \code{\link{plot_variable_importances}}
+  \code{\link{plot_variable_importances_processed}}
 }
 

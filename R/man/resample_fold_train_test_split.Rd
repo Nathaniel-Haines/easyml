@@ -8,7 +8,7 @@ resample_fold_train_test_split(X, y, train_size = 0.667, foldid = NULL,
   random_state = NULL)
 }
 \arguments{
-\item{X}{TO BE EDITED.}
+\item{X}{A data.frame, the data to be resampled.}
 
 \item{y}{A numeric vector with two classes, 0 and 1.}
 
@@ -26,6 +26,7 @@ This will sample the training and test sets so that case identifiers (e.g. subje
 }
 \seealso{
 Other resample: \code{\link{resample_simple_train_test_split}},
-  \code{\link{resample_stratified_train_test_split}}
+  \code{\link{resample_stratified_class_train_test_split}},
+  \code{\link{resample_stratified_simple_train_test_split}}
 }
 

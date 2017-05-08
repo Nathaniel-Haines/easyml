@@ -9,9 +9,9 @@ replicate_predictions(fit_model, predict_model, preprocess, X_train, y_train,
   progress_bar = TRUE, n_core = 1, ...)
 }
 \arguments{
-\item{fit_model}{TO BE EDITED.}
+\item{fit_model}{A function; the function for fitting a model to the data.}
 
-\item{predict_model}{TO BE EDITED.}
+\item{predict_model}{A function; the function for generating predictions from a fitted model.}
 
 \item{preprocess}{A function; the function for preprocessing the data. Defaults to NULL.}
 
@@ -30,11 +30,9 @@ replicate_predictions(fit_model, predict_model, preprocess, X_train, y_train,
 \item{n_core}{An integer vector of length one; specifies the number of cores to use for this analysis. Currenly only works on Mac OSx and Unix/Linux systems. Defaults to 1L.}
 
 \item{...}{The arguments to be passed to the algorithm specified.}
-
-\item{resample}{A function; the function for resampling the data. Defaults to NULL.}
 }
 \value{
-TO BE EDITED.
+A list of matrixes, the replicated predictions.
 }
 \description{
 Replicate predictions.
